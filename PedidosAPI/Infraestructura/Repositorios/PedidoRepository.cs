@@ -14,23 +14,48 @@ namespace PedidosAPI.Infeaestructura.Repositorios
 {
 public class PedidoRepository : IPedidoRepository
 {
-    private readonly AppDbContext _context;
+        private readonly PedidosDbContext _context;
 
-    public PedidoRepository(AppDbContext context)
-    {
-        _context = context;
-    }
+    public PedidoRepository(PedidosDbContext context)
+        {
+            _context = context;
+        }
 
-    public void Guardar(Pedido pedido)
-    {
-        _context.Pedidos.Add(pedido);
+        public void Crear(Pedido pedido)
+        {
+            _context.Pedidos.Add(pedido);
             _context.SaveChanges();
-            return;
-    }
+        }
 
-    public Pedido ObtenerPorId(int id)
-    {
-        return _context.Pedidos.FirstOrDefault(p => p.Id == id);
-    }
+        public Pedido ObtenerPorId(int id)
+        {
+            return _context.Pedidos.Find(id);
+        }
+
+        public List<Pedido> ObtenerTodos()
+        {
+            return _context.Pedidos.ToList();
+        }
+
+        public void Actualizar(Pedido pedido)
+        {
+            _context.Pedidos.Update(pedido);
+            _context.SaveChanges();
+        }
+
+        public void Eliminar(int id)
+        {
+            var pedido = _context.Pedidos.Find(id);
+            if (pedido != null)
+            {
+                _context.Pedidos.Remove(pedido);
+                _context.SaveChanges();
+            }
+        }
+
+        public bool Existe(int id)
+        {
+            return _context.Pedidos.Any(p => p.id == id);
+        }
 }
 }

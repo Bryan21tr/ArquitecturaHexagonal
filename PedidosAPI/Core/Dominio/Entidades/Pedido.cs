@@ -1,28 +1,27 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PedidosAPI.Core.Dominio.Entidades
 {
-    public class Pedido
-    {
-        public int Id { get; private set; }
-        public string Cliente { get; private set; }
-        private readonly List<Producto> _productos = new List<Producto>();
-
-        public IReadOnlyCollection<Producto> Productos => _productos.AsReadOnly();
-
-        public Pedido(int id, string cliente)
+    
+        [Table("pedidos")]
+        public class Pedido
         {
-            Id = id;
-            Cliente = cliente;
-        }
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int id { get; set; }
 
-        public void AgregarProducto(Producto producto)
-        {
-            _productos.Add(producto);
-        }
+            [Required]
+            [MaxLength(100)]
+            public string cliente { get; set; }
 
-        public decimal CalcularTotal()
-        {
-            return _productos.Sum(p => p.Precio);
+            [Required]
+            public DateTime fecha { get; set; }
+
+            [Required]
+            public decimal total { get; set; }
+
         }
-    }
+    
 }

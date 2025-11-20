@@ -11,15 +11,22 @@ using PedidosAPI.Core.Dominio.Entidades;
 namespace PedidosAPI.Configuracion
 {
 
-    public class AppDbContext : DbContext
+    public class PedidosDbContext : DbContext
     {
-        public DbSet<Pedido> Pedidos { get; set; }
+        public PedidosDbContext(DbContextOptions<PedidosDbContext> options)
+            : base(options)
+        {
+        }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pedido>().HasKey(p => p.Id);
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Pedido>()
+                .Property(p => p.total)
+                .HasColumnType("numeric(18,2)");
         }
     }
 }

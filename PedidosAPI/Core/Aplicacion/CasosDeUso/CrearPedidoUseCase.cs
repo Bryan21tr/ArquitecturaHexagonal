@@ -6,23 +6,19 @@ namespace PedidosAPI.Core.Aplicacion.CasosDeUso
 {
     public class CrearPedidoUseCase
     {
-        private readonly IPedidoRepository _repository;
+        private readonly IPedidoRepository _pedidoRepositorio;
 
-        public CrearPedidoUseCase(IPedidoRepository repository)
+         public CrearPedidoUseCase(IPedidoRepository pedidoRepositorio)
         {
-            _repository = repository;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public void Ejecutar(Pedido pedido)
         {
-            if (pedido.CalcularTotal() == 0)
-            {
-                throw new InvalidOperationException("El pedido no puede estar vacío.");
-            }
+            if (pedido == null)
+                throw new ArgumentException("El pedido no puede ser nulo");
 
-            _repository.Guardar(pedido);
-
-            return;
+            _pedidoRepositorio.Crear(pedido);
         }
     }
 }

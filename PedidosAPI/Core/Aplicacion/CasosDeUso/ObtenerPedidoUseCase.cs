@@ -6,21 +6,19 @@ namespace PedidosAPI.Core.Aplicacion.CasosDeUso
 
     public class ObtenerPedidoUseCase
     {
-        private readonly IPedidoRepository _repository;
+        private readonly IPedidoRepository _pedidoRepositorio;
 
-        public ObtenerPedidoUseCase(IPedidoRepository repository)
+        public ObtenerPedidoUseCase(IPedidoRepository pedidoRepositorio)
         {
-            _repository = repository;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public Pedido Ejecutar(int id)
         {
-            var pedido = _repository.ObtenerPorId(id);
+            var pedido = _pedidoRepositorio.ObtenerPorId(id);
 
             if (pedido == null)
-            {
-                throw new KeyNotFoundException("Pedido no encontrado.");
-            }
+                throw new KeyNotFoundException($"Pedido con ID {id} no encontrado");
 
             return pedido;
         }

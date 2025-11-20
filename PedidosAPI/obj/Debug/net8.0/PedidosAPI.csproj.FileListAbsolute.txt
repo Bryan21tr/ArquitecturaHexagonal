@@ -95,3 +95,6 @@ C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\obj\Debug\net8.0
 C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\obj\Debug\net8.0\PedidosAPI.pdb
 C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\obj\Debug\net8.0\PedidosAPI.genruntimeconfig.cache
 C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\obj\Debug\net8.0\ref\PedidosAPI.dll
+C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\obj\Debug\net8.0\PedidosAPI.sourcelink.json
+C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\bin\Debug\net8.0\Npgsql.dll
+C:\Users\elhernandez\source\C#\ArquitecturaHexagonal\PedidosAPI\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
